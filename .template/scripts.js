@@ -1,8 +1,11 @@
-const execa = require('execa')
-const pEachSeries = require('p-each-series')
 const path = require('path')
 
-const installStorybook = async(info) => {
+const installStorybook = async(info, tools) => {
+  const {
+    execa
+    pEachSeries
+  } = tools
+
   const commands = [
     {
       cmd: `${info.manager} install`,
