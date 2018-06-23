@@ -20,6 +20,6 @@ const installStorybook = (info, tools) => {
   }
 }
 
-module.exports = {
+module.exports = (info) => info.install ? {
   'postpackage': installStorybook
-}
+} : {}
