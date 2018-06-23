@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "@donysukardi/reactlib-scripts": "",
+    "@storybook/addon-actions": "",
+    "@storybook/addon-links": "",
+    "@storybook/addons": "",
+    "@storybook/react": "",
+    "cypress": "",
+    "eslint-config-dsds": "",
+    "http-server": "",
+    "npm-run-all": "",
+    "prop-types": "",
+    "react": "",
+    "react-dom": "",
+    "react-testing-library": "",
+    "start-server-and-test": ""
+  }
+}
