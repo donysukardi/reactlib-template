@@ -1,23 +1,29 @@
 module.exports = (info) => {
-  const devDependencies = Object.assign({}, {
+  const devDependencies = Object.assign({},
+  {
     "@donysukardi/reactlib-scripts": "",
+    "eslint-config-dsds": "",
+    "prop-types": "",
+    "react": "",
+    "react-dom": "",
+    "react-testing-library": ""
+  },
+  info.preact ? {
+    "preact": "",
+    "preact-render-to-string": ""
+  } : {},
+  info.cypress ? {
+    "cypress": "",
+    "npm-run-all": "",
+    "start-server-and-test": ""
+  } : {},
+  info.storybook ? {
     "@storybook/addon-actions": "",
     "@storybook/addon-links": "",
     "@storybook/addons": "",
     "@storybook/react": "",
-    "cypress": "",
-    "eslint-config-dsds": "",
-    "http-server": "",
-    "npm-run-all": "",
-    "prop-types": "",
-    "react": "",
-    "react-dom": "",
-    "react-testing-library": "",
-    "start-server-and-test": ""
-  }, info.preact ? {
-    "preact": "",
-    "preact-render-to-string": ""
-  } : {})
+    "http-server": ""
+  }: {})
 
   return {
     devDependencies: devDependencies

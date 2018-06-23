@@ -5,8 +5,8 @@
 [![downloads][downloads-badge]][npmcharts] [![version][version-badge]][package]
 [![{{license}} License][license-badge]][license]
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors)
-[![PRs Welcome][prs-badge]][prs]
+{{#if allContributors}}[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors)
+{{/if}}[![PRs Welcome][prs-badge]][prs]
 
 [![Supports React{{#if preact}} and Preact{{/if}}][react-badge]][react]
 [![size][size-badge]][unpkg-dist] [![gzip size][gzip-badge]][unpkg-dist]
@@ -21,8 +21,8 @@
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributors](#contributors)
-- [License](#license)
+{{#if allContributors}}- [Contributors](#contributors)
+{{/if}}- [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -45,7 +45,7 @@ class Example extends Component {
   }
 }
 ```
-
+{{#if allContributors}}
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
@@ -55,7 +55,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
-
+{{/if}}
 ## License
 
 {{license}} © [{{author}}](https://github.com/{{author}})
@@ -80,5 +80,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [size-badge]: http://img.badgesize.io/https://unpkg.com/{{name}}/dist/{{name}}.umd.min.js?label=size&style=flat-square
 [unpkg-dist]: https://unpkg.com/{{name}}/dist/
 [module-formats-badge]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20es-green.svg?style=flat-square
+{{#if allContributors}}
 [emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
 [all-contributors]: https://github.com/kentcdodds/all-contributors
+{{/if}}

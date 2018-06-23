@@ -16,18 +16,18 @@
     "test:cover": "kcd-scripts test --coverage",
     "test:build": "kcd-scripts test --config other/misc-tests/jest.config.js --no-watch",
     "start": "npm run build --watch",
-    "precommit": "kcd-scripts precommit",
     "format": "kcd-scripts format",
     "build-and-test": "npm run build -s && npm run test:build -s",
-    "validate": "kcd-scripts validate lint,build-and-test,test:cover,test:cypress",
+    "validate": "kcd-scripts validate lint,build-and-test,test:cover{{#if cypress}},test:cypress{{/if}}",{{#if storybook}}
     "storybook": "start-storybook -p 9001 -c stories",
     "storybook:build": "build-storybook -c stories",
-    "storybook:serve": "http-server ./storybook-static -p 9001 -s",
+    "storybook:serve": "http-server ./storybook-static -p 9001 -s",{{/if}}{{#if cypress}}
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "pretest:cypress": "npm run storybook:build --silent",
     "test:cypress": "start-server-and-test storybook:serve http://localhost:9001 cypress:run",
-    "test:cypress:dev": "npm-run-all --parallel --race storybook cypress:open"
+    "test:cypress:dev": "npm-run-all --parallel --race storybook cypress:open",{{/if}}
+    "precommit": "kcd-scripts precommit"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -50,10 +50,10 @@
   },
   "eslintIgnore": [
     "node_modules",
-    "coverage",
-    "cypress",
-    "dist",
+    "coverage",{{#if cypress}}
+    "cypress",{{/if}}{{#if storybook}}
     "stories",
-    "storybook-static"
+    "storybook-static",{{/if}}
+    "dist"
   ]
 }

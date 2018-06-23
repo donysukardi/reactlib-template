@@ -20,6 +20,30 @@ const installStorybook = (info, tools) => {
   }
 }
 
-module.exports = (info) => info.install ? {
-  'postpackage': installStorybook
-} : {}
+const cleanUpUnusedModules = (info, tools) => {
+  const { fs } = tools
+  return {
+    title: 'Cleaning up unused modules',
+    promise: async() => {
+      if(!info.cypress) {
+        fs.removeSync(path.resolve(info.dest, 'cypress'))
+        fs.removeSync(path.resolve(info.dest, 'cypress.json'))
+      }
+      if(!info.allContributors) {
+        fs.removeSync(path.resolve(info.dest, '.all-contributorsrc'))
+      }
+      if(!info.storybook) {
+        fs.removeSync(path.resolve(info.dest, 'stories'))
+      }
+    }
+  }
+}
+
+module.exports = (info) => Object.assign(
+  {
+    'postclonecopy': cleanUpUnusedModules
+  },
+  info.install && info.storybook ? {
+    'postpackage': installStorybook
+  } : {},
+)
