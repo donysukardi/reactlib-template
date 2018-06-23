@@ -11,7 +11,7 @@
   "scripts": {
     "add-contributor": "kcd-scripts contributors add",
     "lint": "kcd-scripts lint",
-    "build": "kcd-scripts build --bundle --no-clean",
+    "build": "kcd-scripts build --bundle{{#if preact}} --p-react{{/if}} --no-clean",
     "test": "kcd-scripts test",
     "test:cover": "kcd-scripts test --coverage",
     "test:build": "kcd-scripts test --config other/misc-tests/jest.config.js --no-watch",
@@ -38,7 +38,9 @@
   "devDependencies": {
   },
   "files": [
-    "dist"
+    "dist"{{#if preact}},
+    "preact"
+    {{/if}}
   ],
   "eslintConfig": {
     "extends": [

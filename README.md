@@ -1,13 +1,16 @@
 # {{name}}
 
-[![travis build](https://img.shields.io/travis/{{repo}}.svg?style=flat-square)](https://travis-ci.org/{{repo}})
-[![version](https://img.shields.io/npm/v/{{name}}.svg?style=flat-square)](http://npm.im/{{name}})
-[![downloads](https://img.shields.io/npm/dm/{{name}}.svg?style=flat-square)](http://npm-stat.com/charts.html?package={{name}}&from=2015-08-01)
-[![{{license}} License](https://img.shields.io/npm/l/{{name}}.svg?style=flat-square)](http://opensource.org/licenses/{{license}})
-{{#if semanticallyReleased}}
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
-{{/if}}
+[![Build Status][build-badge]][build]
+[![Code Coverage][coverage-badge]][coverage]
+[![downloads][downloads-badge]][npmcharts] [![version][version-badge]][package]
+[![{{license}} License][license-badge]][license]
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors)
+[![PRs Welcome][prs-badge]][prs]
+
+[![Supports React{{#if preact}} and Preact{{/if}}][react-badge]][react]
+[![size][size-badge]][unpkg-dist] [![gzip size][gzip-badge]][unpkg-dist]
+[![module formats: umd, cjs, and es][module-formats-badge]][unpkg-dist]
 
 {{description}}
 
@@ -56,3 +59,26 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 ## License
 
 {{license}} © [{{author}}](https://github.com/{{author}})
+
+[npm]: https://www.npmjs.com/
+[node]: https://nodejs.org
+[build-badge]: https://img.shields.io/travis/{{repo}}.svg?style=flat-square
+[build]: https://travis-ci.org/{{repo}}
+[coverage-badge]: https://img.shields.io/codecov/c/github/{{repo}}.svg?style=flat-square
+[coverage]: https://codecov.io/github/{{repo}}
+[version-badge]: https://img.shields.io/npm/v/{{name}}.svg?style=flat-square
+[package]: https://www.npmjs.com/package/{{name}}
+[downloads-badge]: https://img.shields.io/npm/dm/{{name}}.svg?style=flat-square
+[npmcharts]: http://npmcharts.com/compare/{{name}}
+[license-badge]: https://img.shields.io/npm/l/{{name}}.svg?style=flat-square
+[license]: https://github.com/{{repo}}/blob/master/LICENSE
+[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[prs]: http://makeapullrequest.com
+[react-badge]: https://img.shields.io/badge/%E2%9A%9B%EF%B8%8F-{{#if preact}}(p){{/if}}react-00d8ff.svg?style=flat-square
+[react]: https://facebook.github.io/react/
+[gzip-badge]: http://img.badgesize.io/https://unpkg.com/{{name}}/dist/{{name}}.umd.min.js?compression=gzip&label=gzip%20size&style=flat-square
+[size-badge]: http://img.badgesize.io/https://unpkg.com/{{name}}/dist/{{name}}.umd.min.js?label=size&style=flat-square
+[unpkg-dist]: https://unpkg.com/{{name}}/dist/
+[module-formats-badge]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20es-green.svg?style=flat-square
+[emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
+[all-contributors]: https://github.com/kentcdodds/all-contributors
