@@ -1,8 +1,8 @@
 const path = require('path')
 
-const installStorybook = async(info, tools) => {
+const installStorybook = (info, tools) => {
   const {
-    execa
+    execa,
     pEachSeries
   } = tools
 
@@ -13,9 +13,11 @@ const installStorybook = async(info, tools) => {
     }
   ].filter(Boolean)
 
-  return pEachSeries(commands, async ({ cmd, cwd }) =>
-    execa.shell(cmd, { cwd })
-  )
+  return {
+    title: 'Installing storybook',
+    promise: async() => pEachSeries(commands, async ({ cmd, cwd }) =>
+      execa.shell(cmd, { cwd }))
+  }
 }
 
 module.exports = {
