@@ -1,5 +1,5 @@
-module.exports = {
-  "cypress": true,
-  "allContributors": true,
-  "storybook": true
-}
+module.exports = config => ({
+  'cypress': false,
+  'allContributors': true,
+  'storybook': true
+})

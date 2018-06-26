@@ -1,49 +1,55 @@
 const path = require('path')
 
-const installStorybook = (info, tools) => {
+const installStorybook = async (config, tools) => {
   const {
+    ora,
     execa,
     pEachSeries
   } = tools
 
   const commands = [
     {
-      cmd: `${info.manager} install`,
-      cwd: path.join(info.dest, 'stories')
+      cmd: `${config.manager} install`,
+      cwd: path.join(config.dest, 'stories')
     }
   ].filter(Boolean)
 
-  return {
-    title: 'Installing storybook',
-    promise: async() => pEachSeries(commands, async ({ cmd, cwd }) =>
-      execa.shell(cmd, { cwd }))
+  if(config.install && config.storybook) {
+    const promise = pEachSeries(commands, async ({ cmd, cwd }) =>
+          execa.shell(cmd, { cwd }))
+    ora.promise(promise, 'Installing storybook')
+    await promise
   }
 }
 
-const cleanUpUnusedModules = (info, tools) => {
-  const { fs } = tools
-  return {
-    title: 'Cleaning up unused modules',
-    promise: async() => {
-      if(!info.cypress) {
-        fs.removeSync(path.resolve(info.dest, 'cypress'))
-        fs.removeSync(path.resolve(info.dest, 'cypress.json'))
-      }
-      if(!info.allContributors) {
-        fs.removeSync(path.resolve(info.dest, '.all-contributorsrc'))
-      }
-      if(!info.storybook) {
-        fs.removeSync(path.resolve(info.dest, 'stories'))
-      }
+const cleanUpUnusedModules = async (config, tools) => {
+  const { fs, ora } = tools
+  const promise = new Promise(resolve => {
+    fs.removeSync(path.resolve(config.dest, '.all-contributorsrc'))
+    fs.removeSync(path.resolve(config.dest, '.travis.yml'))
+    fs.removeSync(path.resolve(config.dest, '.gitignore'))
+    fs.removeSync(path.resolve(config.dest, 'LICENSE'))
+    fs.removeSync(path.resolve(config.dest, 'package.json'))
+    fs.removeSync(path.resolve(config.dest, 'README.md'))
+
+    if(!config.cypress) {
+      fs.removeSync(path.resolve(config.dest, 'cypress'))
+      fs.removeSync(path.resolve(config.dest, 'cypress.json.tmpl'))
     }
-  }
+    if(!config.allContributors) {
+      fs.removeSync(path.resolve(config.dest, '.all-contributorsrc.tmpl'))
+    }
+    if(!config.storybook) {
+      fs.removeSync(path.resolve(config.dest, 'stories'))
+    }
+    resolve()
+  })
+
+  ora.promise(promise, 'Cleaning up unused modules')
+  await promise
 }
 
-module.exports = (info) => Object.assign(
-  {
-    'postclonecopy': cleanUpUnusedModules
-  },
-  info.install && info.storybook ? {
-    'postpackage': installStorybook
-  } : {},
-)
+module.exports = {
+  'postclonecopy': cleanUpUnusedModules,
+  'postpackage': installStorybook
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@donysukardi/reactlib-template",
+  "version": "0.0.0-semantically-released",
+  "description": "Default template for @donysukardi/create-lib",
+  "author": "donysukardi",
+  "license": "MIT",
+  "repository": "donysukardi/reactlib-template",
+  "scripts": {
+    "add-contributor": "kcd-scripts contributors add",
+    "lint": "kcd-scripts lint",
+    "test": "kcd-scripts test --watch=0",
+    "precommit": "kcd-scripts precommit",
+    "format": "kcd-scripts format",
+    "validate": "kcd-scripts validate lint,test"
+  },
+  "devDependencies": {
+    "kcd-scripts": "^0.39.1"
+  }
+}
